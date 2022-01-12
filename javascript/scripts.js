@@ -118,20 +118,29 @@ const Modal = {
       .querySelector("li.optionActive")
       .getAttribute("data-key");
     let amount = +document.querySelector("input[type=number]").value;
+    let identifier = Products[modalKey].id + "&" + color;
+    let key = cart.findIndex((item) => item.identifier == identifier);
 
-    cart.push({
-      id: Products[modalKey].id,
-      color,
-      amount,
-    });
+    if (key > -1) {
+      cart[key].amount += amount;
+    } else {
+      cart.push({
+        identifier,
+        id: Products[modalKey].id,
+        color,
+        amount,
+      });
+    }
 
+    shoppingCart.updateCart();
     Modal.close();
   },
 };
 
 const shoppingCart = {
   show() {
-    document.querySelector(".overlay-menuCart").style.display = "block";
+    document.querySelector(".overlay-menuCart").style.visibility = "visible";
+    document.querySelector(".overlay-menuCart").style.opacity = "1";
     setTimeout(() => {
       document.querySelector("#menu-cart").classList.add("menu-actived");
     }, 100);
@@ -139,11 +148,67 @@ const shoppingCart = {
   hidden() {
     document.querySelector("#menu-cart").classList.remove("menu-actived");
     setTimeout(() => {
-      document.querySelector(".overlay-menuCart").style.display = "none";
+      document.querySelector(".overlay-menuCart").style.visibility = "hidden";
+      document.querySelector(".overlay-menuCart").style.opacity = "0";
     }, 300);
   },
-  footerSumPurchases(amount) {
-    return document.querySelector("#menu-cart .footer .amount-total .number");
+  updateCart() {
+    let html = document.querySelector("#menu-cart .main");
+    let total = 0;
+    let qt = 0;
+    html.innerHTML = "";
+    for (let i in cart) {
+      let productItem = Products.find((item) => item.id == cart[i].id);
+      total += productItem.price * cart[i].amount;
+      qt += cart[i].amount;
+
+      let color = cart[i].color;
+      switch (color) {
+        case 0:
+          color = "Prata";
+          break;
+        case 1:
+          color = "Cinza";
+          break;
+        case 2:
+          color = "Azul";
+          break;
+      }
+      html.innerHTML += `
+       <div class="card" data-key="${i}">
+        <div class="image">
+          <img src="${productItem.image.src}" alt="" srcset="" />
+        </div>
+        <div class="content">
+          <div class="title">
+            <h2 title="${productItem.description}">${
+        productItem.description
+      }</h2>
+            <p>R$ ${productItem.price.toFixed(2)}</p>
+          </div>
+          <div class="color-product">
+            <p>${color}</p>
+          </div>
+          <div class="amount-deleteProduct">
+            <p>${cart[i].amount}</p>
+            <button onclick="shoppingCart.deleteItemCart(${i})">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      `;
+    }
+    document.querySelector(
+      "#menu-cart .footer .info span.amountProduct"
+    ).innerHTML = qt;
+    document.querySelector(
+      "#menu-cart .footer .info span.priceTotal"
+    ).innerHTML = total.toFixed(2);
+  },
+  deleteItemCart(itemIndex) {
+    cart.splice(itemIndex, 1);
+    shoppingCart.updateCart();
   },
 };
 
