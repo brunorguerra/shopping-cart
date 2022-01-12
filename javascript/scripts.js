@@ -1,9 +1,13 @@
+let cart = [];
+let modalKey = 0;
+
 const Main = {
   showContent(listProducts) {
+    let html = document.querySelector("main .products");
     if (listProducts.length > 1) {
       document.querySelector("main .products .message").style.display = "none";
-      let html = document.querySelector("main .products");
-      listProducts.forEach((value, i) => {
+
+      listProducts.map((value) => {
         html.innerHTML += `
         <div data-key="${value.id}" class="card" onclick="Modal.open('${
           value.description
@@ -32,6 +36,7 @@ const Main = {
 const Modal = {
   open(description, image, price, key) {
     let html = document.querySelector("body .containerModal");
+    modalKey = key;
     html.innerHTML = `
     <section id="box-product">
         <div class="overlay" onclick="Modal.close()"></div>
@@ -55,9 +60,9 @@ const Modal = {
             <nav class="options">
               <p>Cor:</p>
               <ul>
-                <li onclick="Modal.selectColor(this)" class="optionActive">Prata</li>
-                <li onclick="Modal.selectColor(this)">Cinza</li>
-                <li onclick="Modal.selectColor(this)">Azul</li>
+                <li data-key="0" onclick="Modal.selectColor(this)" class="optionActive">Prata</li>
+                <li data-key="1" onclick="Modal.selectColor(this)">Cinza</li>
+                <li data-key="2" onclick="Modal.selectColor(this)">Azul</li>
               </ul>
             </nav>
             <div class="separator"></div>
@@ -72,7 +77,7 @@ const Modal = {
             </div>
             <div class="separator"></div>
             <div class="buy">
-              <a href="#" onclick="Modal.sendToShoppingCart('${description}','${image}', document.querySelector('#box-product #content .value-amount input'), ${price}, document.querySelector('body .containerModal nav.options ul li.optionActive').innerHTML, ${key})">Adicionar ao Carrinho</a>
+              <a href="#" onclick="Modal.sendToShoppingCart()">Adicionar ao Carrinho</a>
               <button onclick="Modal.close()">Cancelar</button>
             </div>
           </div>
@@ -108,37 +113,34 @@ const Modal = {
       });
     selector.classList.add("optionActive");
   },
-  sendToShoppingCart(description, image, amount, price, color, key) {
-    let html = document.querySelector("#menu-cart .main");
-    document.querySelector("#menu-cart .main .message").style.display = "none";
-    html.innerHTML += `
-    <div data-key="${key}" class="card">
-              <div class="image">
-                <img src="${image}" alt="" srcset="" />
-              </div>
-              <div class="overview">
-                <p class="description" title="${description}">${description}</p>
-                <p class="cor">${color}</p>
-                <div class="values">
-                  <p class="amount">Qtd: ${amount.value}x</p>
-                  <p class="price">R$ ${price.toFixed(2).replace(".", ",")}</p>
-                </div>
-              </div>
-            </div>
-            `;
-    // shoppingCart.footerSumPurchases(Number(amount.value));
+  sendToShoppingCart() {
+    let color = +document
+      .querySelector("li.optionActive")
+      .getAttribute("data-key");
+    let amount = +document.querySelector("input[type=number]").value;
+
+    cart.push({
+      id: Products[modalKey].id,
+      color,
+      amount,
+    });
+
     Modal.close();
   },
 };
 
 const shoppingCart = {
   show() {
-    document.querySelector("header #menu-cart").classList.add("menu-actived");
+    document.querySelector(".overlay-menuCart").style.display = "block";
+    setTimeout(() => {
+      document.querySelector("#menu-cart").classList.add("menu-actived");
+    }, 100);
   },
   hidden() {
-    document
-      .querySelector("header #menu-cart")
-      .classList.remove("menu-actived");
+    document.querySelector("#menu-cart").classList.remove("menu-actived");
+    setTimeout(() => {
+      document.querySelector(".overlay-menuCart").style.display = "none";
+    }, 300);
   },
   footerSumPurchases(amount) {
     return document.querySelector("#menu-cart .footer .amount-total .number");

@@ -24,33 +24,54 @@
   <body ondragstart="return false">
     <header class="fixedWidth">
       <h1>STORE</h1>
-      <div class="cart" onmouseover="shoppingCart.show()">
+      <div class="cart" onclick="shoppingCart.show()">
         <span class="amount">Carrinho</span>
         <i class="fas fa-shopping-cart"></i>
       </div>
-
-      <section id="menu-cart">
-        <h2>Meu Carrinho</h2>
-        <div class="separator"></div>
-        <div class="content">
-          <div class="main">
-            <div class="message">
-              <p>Carrinho vazio</p>
-            </div>
-          </div>
-          <div class="separator"></div>
-          <div class="footer">
-            <div>
-              <p class="amount-total"><span class="number"></span> Item(s)</p>
-              <p class="price-total">R$ 0,00</p>
-            </div>
-            <a href="#">Finalizar Pedido</a>
-          </div>
-        </div>
-      </section>
     </header>
 
-    <main class="fixedWidth" onmouseover="shoppingCart.hidden()">
+    <div class="overlay-menuCart" onclick="shoppingCart.hidden()"></div>
+    <section id="menu-cart">
+      <div class="header">
+        <div class="closeCart" onclick="shoppingCart.hidden()">
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="titleCart">
+          <h2>Carrinho de Compras</h2>
+        </div>
+      </div>
+      <div class="main">
+        <!-- <div class="card">
+          <div class="image">
+            <img src="./assets/images/note1.jpg" alt="" srcset="" />
+          </div>
+          <div class="content">
+            <div class="title">
+              <h2>Notebook gamer i7 8gb ssd 256gb gtx 1650 - windows 10</h2>
+              <p>R$ 3999,90</p>
+            </div>
+            <div class="color-product">
+              <p>Cinza</p>
+            </div>
+            <div class="amount-deleteProduct">
+              <p>1</p>
+              <button>
+                <i class="far fa-trash-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="footer">
+        <div class="info">
+          <p>Item(s) <span class="amountProduct">1</span></p>
+          <p>R$ 3990,90</p>
+        </div>
+        <a href="#">Finalizar Pedido</a>
+      </div>
+    </section>
+
+    <main class="fixedWidth">
       <section class="category">
         <h2>Produtos</h2>
       </section>
@@ -64,6 +85,8 @@
     <footer class="fixedWidth"></footer>
 
     <div class="containerModal"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="./javascript/notebooks.js"></script>
     <script src="./javascript/scripts.js"></script>
   </body>

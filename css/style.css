@@ -321,151 +321,207 @@ main .products .card .price p:nth-child(2) {
 }
 
 /* Carrinho */
-#menu-cart {
+.overlay-menuCart {
+  display: none;
   position: absolute;
-  top: 7.5rem;
-  right: 5rem;
-  max-width: 40rem;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.25);
+}
+#menu-cart {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: -150%;
+
+  width: 40rem;
+  height: 100vh;
+
   background: var(--white);
   box-shadow: 1px 1px 10px 1px #ccc;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.15s linear;
+  transition: all 0.25s linear;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 #menu-cart.menu-actived {
-  visibility: visible;
-  opacity: 1;
+  right: 0;
 }
-#menu-cart .separator {
+#menu-cart .header {
   width: 100%;
-  height: 1px;
-  background-color: rgba(200, 200, 200, 0.45);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  padding-bottom: 4rem;
 }
-#menu-cart h2 {
-  text-align: center;
-  font-size: var(--fontP);
-  font-weight: 500;
-  color: var(--gray);
-  margin: 2rem;
+#menu-cart .header .closeCart {
+  align-self: flex-start;
+
+  width: 5rem;
+  height: 5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  font-size: var(--fontH2);
+  color: var(--title);
+
+  border-radius: 5px;
+  margin: 1rem 0 0 1rem;
 }
-.message {
+#menu-cart .header .closeCart:active {
+  background: rgba(200, 200, 200, 0.5);
+}
+#menu-cart .header .titleCart {
+  margin-top: 1rem;
+}
+#menu-cart .header .titleCart h2 {
+  font-size: var(--fontH2);
+  font-weight: 600;
+  color: var(--title);
+}
+#menu-cart .main {
   width: 100%;
-  padding: 5rem;
-  text-align: center;
-}
-.message p {
-  font-size: var(--fontNormal);
-  color: rgba(100, 100, 100, 0.75);
-}
-#menu-cart .content {
-  padding: 1rem;
-  width: 100%;
-}
-#menu-cart .content .main {
-  margin: 1rem;
-  padding: 1rem 2rem;
-  width: 100%;
-  max-height: 40rem;
+  height: 100%;
+  overflow-y: auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 4rem;
-  overflow: auto;
+  row-gap: 3rem;
+
+  padding: 2rem;
 }
-#menu-cart .content .main .card {
+#menu-cart .main .card {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  gap: 1rem;
 }
-#menu-cart .content .main .card .image {
-  width: 15rem;
+#menu-cart .main .card .image {
+  width: 13rem;
+  height: 13rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 }
-#menu-cart .content .main .card .image > img {
-  max-width: 80%;
-  cursor: pointer;
+#menu-cart .main .card .image img {
+  width: 85%;
   transition: 0.15s linear;
 }
-#menu-cart .content .main .card .image > img:hover {
-  transform: scale(1.1);
+#menu-cart .main .card .image:hover > img {
+  width: 100%;
 }
-#menu-cart .content .main .card .overview {
+#menu-cart .main .card .content {
+  width: 100%;
+}
+#menu-cart .main .card .content .title {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
 }
-#menu-cart .content .main .card .overview p.description {
-  font-size: var(--fontNormal);
+#menu-cart .main .card .content .title h2 {
+  font-size: var(--fontMedium);
   font-weight: 500;
-  color: var(--black);
-  max-width: 38rem;
+  color: var(--gray);
+
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-#menu-cart .content .main .card .overview p.cor {
-  font-size: var(--fontSmall);
+#menu-cart .main .card .content .title p {
+  font-size: var(--fontNormal);
+  font-weight: 600;
   color: var(--title);
+
+  white-space: nowrap;
 }
-#menu-cart .content .main .card .overview .values {
-  margin-top: 0.5rem;
+#menu-cart .main .card .content .color-product {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
-#menu-cart .content .main .card .overview .values p.amount {
+#menu-cart .main .card .content .color-product p {
   font-size: var(--fontSmall);
   color: var(--gray);
 }
-#menu-cart .content .main .card .overview .values p.price {
-  font-size: var(--fontNormal);
-  color: var(--title);
-}
-#menu-cart .content .footer {
-  margin-top: 2rem;
+#menu-cart .main .card .content .amount-deleteProduct {
   width: 100%;
-}
-#menu-cart .content .footer div:nth-child(1) {
-  width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
-  padding: 0 1rem;
 }
-#menu-cart .content .footer div:nth-child(1) p {
+#menu-cart .main .card .content .amount-deleteProduct p {
   font-size: var(--fontSmall);
-  color: var(--black);
-}
-#menu-cart .content .footer div:nth-child(1) p.price-total {
   color: var(--title);
 }
-#menu-cart .content .footer > a {
-  width: 90%;
-  display: block;
-  text-align: center;
-  text-decoration: none;
+#menu-cart .main .card .content .amount-deleteProduct button {
+  width: 3rem;
+  height: 3rem;
 
-  padding: 1.5rem;
-  margin: 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+#menu-cart .main .card .content .amount-deleteProduct button > i {
+  font-size: var(--fontMedium);
+  color: var(--title);
+}
+#menu-cart .footer {
+  width: 100%;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  padding: 4rem 2rem 3rem;
+}
+#menu-cart .footer .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#menu-cart .footer .info p {
   font-size: var(--fontNormal);
-
-  border: 1px solid transparent;
-  border-radius: 3px;
+  color: var(--gray);
+}
+#menu-cart .footer a {
+  display: block;
+  width: 90%;
 
   background: var(--title);
   color: var(--white);
 
-  transition: all 0.15s linear;
+  font-size: var(--fontNormal);
+  font-weight: 600;
+
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+
+  text-align: center;
+  text-decoration: none;
+
+  padding: 2rem 0;
+  margin: 2rem auto 0;
+
+  transition: 0.15s linear;
 }
-#menu-cart .content .footer > a:hover {
+#menu-cart .footer a:hover {
   background: transparent;
   color: var(--title);
   border-color: var(--title);

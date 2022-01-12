@@ -27,6 +27,7 @@ html {
 body {
   background: var(--body);
   font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
 }
 .fixedWidth {
   width: min(130rem, 90%);
