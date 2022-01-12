@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produtos</title>
+    <!-- SEO -->
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a5ee84bd77.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body ondragstart="return false">
+    <header class="fixedWidth">
+      <h1>STORE</h1>
+      <div class="cart" onmouseover="shoppingCart.show()">
+        <span class="amount">Carrinho</span>
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+
+      <section id="menu-cart">
+        <h2>Meu Carrinho</h2>
+        <div class="separator"></div>
+        <div class="content">
+          <div class="main">
+            <div class="message">
+              <p>Carrinho vazio</p>
+            </div>
+          </div>
+          <div class="separator"></div>
+          <div class="footer">
+            <div>
+              <p class="amount-total"><span class="number"></span> Item(s)</p>
+              <p class="price-total">R$ 0,00</p>
+            </div>
+            <a href="#">Finalizar Pedido</a>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <main class="fixedWidth" onmouseover="shoppingCart.hidden()">
+      <section class="category">
+        <h2>Produtos</h2>
+      </section>
+      <section class="products">
+        <div class="message">
+          <p>Sem Produtos Disponiveis</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="fixedWidth"></footer>
+
+    <div class="containerModal"></div>
+    <script src="./javascript/notebooks.js"></script>
+    <script src="./javascript/scripts.js"></script>
+  </body>
+</html>

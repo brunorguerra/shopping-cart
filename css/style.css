@@ -1,0 +1,472 @@
+/* HEADER */
+header {
+  width: 100%;
+  height: 9rem;
+
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+header h1 {
+  font-size: var(--fontTitle);
+}
+header .cart {
+  width: 7rem;
+  height: 5rem;
+  cursor: pointer;
+  font-size: var(--fontP);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .cart .amount {
+  margin-right: 0.7rem;
+}
+
+/* MAIN */
+main {
+  padding: 4rem 0rem;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+main .category {
+  align-self: flex-start;
+}
+main .category > h2 {
+  color: var(--title);
+  font-size: var(--fontH2);
+  font-weight: 600;
+  position: relative;
+}
+main .category > h2::after {
+  content: "";
+  width: 40%;
+  height: 0.4rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: var(--title);
+}
+main .products {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+main .products .message {
+  margin-top: 5rem;
+}
+main .products .card {
+  width: 30rem;
+  height: auto;
+  background: var(--white);
+  padding: 2rem;
+  cursor: pointer;
+  transition: 0.1s linear;
+}
+main .products .card:hover {
+  box-shadow: 1px 1px 10px 1px #ccc;
+}
+main .products .card .image {
+  width: 100%;
+  height: 20rem;
+  margin-bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main .products .card .image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+main .products .card .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 20rem;
+}
+main .products .card .description {
+  font-size: var(--fontP);
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--gray);
+}
+main .products .card .description:hover {
+  color: var(--black);
+}
+main .products .card .price {
+  align-self: flex-start;
+  margin-top: 2rem;
+}
+main .products .card .price p {
+  font-weight: 500;
+  cursor: auto;
+}
+main .products .card .price p:nth-child(1) {
+  color: var(--title);
+  font-size: var(--fontP);
+}
+main .products .card .price p:nth-child(2) {
+  color: var(--buy-or-price);
+  font-size: var(--fontSmall);
+}
+
+/* Box Product Buy */
+#box-product {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+  transition: all 0.15s linear;
+}
+#box-product .overlay {
+  background: rgba(0, 0, 0, 0.65);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  z-index: 1;
+}
+#box-product #content {
+  width: 110rem;
+  height: 55rem;
+  background: var(--white);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  border-radius: 10px;
+  gap: 2rem;
+  box-shadow: 1px 1px 3px 2px #fff;
+}
+#box-product #content .image {
+  width: 40rem;
+  height: 40rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#box-product #content .image > img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 80%;
+  transition: transform 0.15s linear;
+  cursor: pointer;
+}
+#box-product #content .image > img:hover {
+  transform: scale(1.15);
+}
+#box-product #content .description {
+  width: 70rem;
+  height: 50rem;
+  padding: 3rem;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+#box-product #content .description .separator {
+  width: 100%;
+  height: 1px;
+  background: rgba(200, 200, 200, 0.15);
+  margin: 1rem 0;
+}
+#box-product #content .description p.product-description {
+  font-size: var(--fontP);
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--black);
+  cursor: pointer;
+}
+#box-product #content .description .price,
+#box-product #content .description nav.options,
+#box-product #content .description .amount,
+#box-product #content .description .buy {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3rem;
+}
+#box-product #content .description .price > p:nth-of-type(1),
+#box-product #content .description nav.options > p,
+#box-product #content .description .amount {
+  font-size: var(--fontNormal);
+  font-weight: 400;
+  color: var(--gray);
+}
+#box-product #content .description .price .value-price > p:nth-child(1) {
+  font-size: var(--fontH2);
+  font-weight: 600;
+  color: var(--title);
+}
+#box-product #content .description .price .value-price > p:nth-child(2) {
+  font-size: var(--fontSmall);
+  color: var(--buy-or-price);
+}
+#box-product #content .description nav.options ul {
+  display: flex;
+  gap: 2rem;
+}
+#box-product #content .description nav.options ul li {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.5rem 2.5rem;
+  border: 1px solid var(--gray);
+  font-size: var(--fontNormal);
+}
+#box-product #content .description nav.options ul li:hover {
+  color: var(--white);
+  border-color: var(--title);
+  background-color: var(--title);
+}
+#box-product #content .description nav.options ul li.optionActive {
+  color: var(--white);
+  border-color: var(--title);
+  background-color: var(--title);
+}
+#box-product #content .description .amount {
+  margin: 0.5rem 0;
+}
+#box-product #content .description .amount .value-amount {
+  display: flex;
+}
+#box-product #content .description .amount .value-amount button,
+#box-product #content .description .amount .value-amount input,
+#menu-cart .content .main .card .overview .values .input > button,
+#menu-cart .content .main .card .overview .values .input input {
+  width: 3rem;
+  height: 3rem;
+  font-size: var(--fontNormal);
+  cursor: pointer;
+  border: 1px solid var(--gray);
+  outline: none;
+  background: rgba(200, 200, 200, 0.1);
+}
+
+#box-product #content .description .amount .value-amount button:active,
+#menu-cart .content .main .card .overview .values .input button:active {
+  background: var(--gray);
+  color: var(--white);
+}
+#box-product #content .description .amount .value-amount input {
+  width: 6rem;
+  border-left: none;
+  border-right: none;
+  cursor: auto;
+  padding: 0 0.4rem;
+  text-align: center;
+}
+#box-product
+  #content
+  .description
+  .amount
+  .value-amount
+  input[type="number"]::-webkit-inner-spin-button,
+#menu-cart
+  .content
+  .main
+  .card
+  .overview
+  .values
+  .input
+  input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+#box-product #content .description .amount .value-amount p {
+  margin-left: 1rem;
+}
+#box-product #content .description .buy > a {
+  font-size: var(--fontMedium);
+  text-decoration: none;
+  border: 1px solid transparent;
+  background: var(--buy-or-price);
+  color: var(--white);
+  padding: 1.5rem 2.2rem;
+  border-radius: 5rem;
+  transition: all 0.15s linear;
+}
+#box-product #content .description .buy > a:hover {
+  background: transparent;
+  color: var(--buy-or-price);
+  border-color: var(--buy-or-price);
+}
+#box-product #content .description .buy > button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: var(--fontNormal);
+  color: var(--cancel);
+}
+
+/* Carrinho */
+#menu-cart {
+  position: absolute;
+  top: 7.5rem;
+  right: 5rem;
+  max-width: 40rem;
+  width: 100%;
+  height: auto;
+  background: var(--white);
+  box-shadow: 1px 1px 10px 1px #ccc;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.15s linear;
+}
+#menu-cart.menu-actived {
+  visibility: visible;
+  opacity: 1;
+}
+#menu-cart .separator {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(200, 200, 200, 0.45);
+}
+#menu-cart h2 {
+  text-align: center;
+  font-size: var(--fontP);
+  font-weight: 500;
+  color: var(--gray);
+  margin: 2rem;
+}
+.message {
+  width: 100%;
+  padding: 5rem;
+  text-align: center;
+}
+.message p {
+  font-size: var(--fontNormal);
+  color: rgba(100, 100, 100, 0.75);
+}
+#menu-cart .content {
+  padding: 1rem;
+  width: 100%;
+}
+#menu-cart .content .main {
+  margin: 1rem;
+  padding: 1rem 2rem;
+  width: 100%;
+  max-height: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4rem;
+  overflow: auto;
+}
+#menu-cart .content .main .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+#menu-cart .content .main .card .image {
+  width: 15rem;
+}
+#menu-cart .content .main .card .image > img {
+  max-width: 80%;
+  cursor: pointer;
+  transition: 0.15s linear;
+}
+#menu-cart .content .main .card .image > img:hover {
+  transform: scale(1.1);
+}
+#menu-cart .content .main .card .overview {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+#menu-cart .content .main .card .overview p.description {
+  font-size: var(--fontNormal);
+  font-weight: 500;
+  color: var(--black);
+  max-width: 38rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+#menu-cart .content .main .card .overview p.cor {
+  font-size: var(--fontSmall);
+  color: var(--title);
+}
+#menu-cart .content .main .card .overview .values {
+  margin-top: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#menu-cart .content .main .card .overview .values p.amount {
+  font-size: var(--fontSmall);
+  color: var(--gray);
+}
+#menu-cart .content .main .card .overview .values p.price {
+  font-size: var(--fontNormal);
+  color: var(--title);
+}
+#menu-cart .content .footer {
+  margin-top: 2rem;
+  width: 100%;
+}
+#menu-cart .content .footer div:nth-child(1) {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+#menu-cart .content .footer div:nth-child(1) p {
+  font-size: var(--fontSmall);
+  color: var(--black);
+}
+#menu-cart .content .footer div:nth-child(1) p.price-total {
+  color: var(--title);
+}
+#menu-cart .content .footer > a {
+  width: 90%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+
+  padding: 1.5rem;
+  margin: 1rem auto;
+
+  font-size: var(--fontNormal);
+
+  border: 1px solid transparent;
+  border-radius: 3px;
+
+  background: var(--title);
+  color: var(--white);
+
+  transition: all 0.15s linear;
+}
+#menu-cart .content .footer > a:hover {
+  background: transparent;
+  color: var(--title);
+  border-color: var(--title);
+}

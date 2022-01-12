@@ -1,0 +1,34 @@
+:root {
+  /* COLORS */
+  --body: #f0f2f2;
+  --cancel: #9e0000;
+  --buy-or-price: #5c9842;
+  --title: #004566;
+  --white: #ffffff;
+  --gray: #363737;
+  --black: #000000;
+
+  /* FONTS SIZE */
+  --fontTitle: 3.2rem;
+  --fontH2: 2.8rem;
+  --fontP: 2.6rem;
+  --fontMedium: 2rem;
+  --fontNormal: 1.8rem;
+  --fontSmall: 1.6rem;
+}
+html {
+  font-size: 62.5%;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: var(--body);
+  font-family: "Poppins", sans-serif;
+}
+.fixedWidth {
+  width: min(130rem, 90%);
+  margin: 0 auto;
+}
